@@ -1,0 +1,6 @@
+project: rnshah9/mayhem-szl
+target: szl
+
+cmds:
+  - cmd: /repo/build/src/szl @@
+    filepath: /test.szl
