@@ -4,3 +4,5 @@ target: szl
 cmds:
   - cmd: /repo/build/src/szl /test.szl
     filepath: /test.szl
+    env:
+      DISABLE_SMOKETEST: '1'
