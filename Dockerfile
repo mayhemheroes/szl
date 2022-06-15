@@ -11,11 +11,3 @@ WORKDIR /repo/build
 RUN ninja
 RUN ninja install
 
-RUN mkdir -p /deps
-RUN ldd /repo/build/src/szl | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
-
-FROM ubuntu:20.04 as package
-
-COPY --from=builder /deps /deps
-COPY --from=builder /repo/build/src/szl /repo/build/src/szl
-ENV LD_LIBRARY_PATH=/deps
