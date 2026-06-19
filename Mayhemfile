@@ -1,0 +1,7 @@
+project: szl
+target: szl
+
+cmds:
+  - cmd: /install/bin/szl @@
+    env:
+      DISABLE_SMOKETEST: '1'

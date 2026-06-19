@@ -1,0 +1,16 @@
+FROM --platform=linux/amd64 ubuntu:20.04 as builder
+
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git meson libz-dev libcurl4-gnutls-dev libarchive-dev libssl-dev libffi-dev pkg-config
+
+
+COPY . /repo
+WORKDIR /repo
+RUN meson build --prefix=/install
+WORKDIR /repo/build
+RUN ninja
+RUN ninja install
+
+FROM ubuntu:20.04 as package
+COPY --from=builder /install /install
+ENV LD_LIBRARY_PATH=/install/lib/x86_64-linux-gnu
