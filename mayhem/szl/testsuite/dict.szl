@@ -1,0 +1,2 @@
+$global d [$dict.set [$dict] a 1]
+$puts [$dict.get $d a]

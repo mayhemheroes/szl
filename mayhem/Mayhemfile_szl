@@ -1,0 +1,13 @@
+project: szl
+target: szl
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/szl/testsuite
+
+# File-input (CLI) target: feed the fuzz bytes as a szl SCRIPT to the interpreter. The szl binary
+# parses and evaluates the input through the whole engine (tokenizer, parser, evaluator, builtin
+# command set), which is the natural fuzz surface for a scripting language. Not libFuzzer: the
+# interpreter on a script file IS the target (and its own standalone reproducer). @@ is the input-file
+# placeholder. Ported from the old integration's file-input target (old invocation ran szl on a script).
+cmds:
+  - cmd: /mayhem/szl @@
